@@ -5,7 +5,9 @@ const main = async () => {
   console.log("Deploy do contrato feito por:", owner.address);
   console.log("Saldo da conta:", accountBalance.toString());
 
-  const xPost = await hre.ethers.deployContract("XPost");
+  const xPost = await hre.ethers.deployContract("XPost", {
+    value: hre.ethers.parseEther("0.1"),
+  });
   await xPost.waitForDeployment();
 
   console.log("Deploy do contrato no endereço:", xPost.target);
